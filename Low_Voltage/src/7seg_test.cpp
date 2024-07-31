@@ -115,13 +115,24 @@ void displayNumber(int number, int t = 5)
     displayDigit(digit2);
     delay(t);
   }
-
-  digitalWrite(digitPins[0], HIGH);
-  digitalWrite(digitPins[1], HIGH);
-  digitalWrite(digitPins[2], LOW);
-  digitalWrite(digitPins[3], HIGH);
-  displayDigit(digit3);
-  delay(t);
+  if (digit3 == 0 && digit2 == 0 && digit1 == 0)
+  {
+    digitalWrite(digitPins[0], HIGH);
+    digitalWrite(digitPins[1], HIGH);
+    digitalWrite(digitPins[2], HIGH);
+    digitalWrite(digitPins[3], HIGH);
+    displayDigit(digit3);
+    delay(t);
+  }
+  else
+  {
+    digitalWrite(digitPins[0], HIGH);
+    digitalWrite(digitPins[1], HIGH);
+    digitalWrite(digitPins[2], LOW);
+    digitalWrite(digitPins[3], HIGH);
+    displayDigit(digit3);
+    delay(t);
+  }
 
   digitalWrite(digitPins[0], HIGH);
   digitalWrite(digitPins[1], HIGH);
@@ -133,9 +144,9 @@ void displayNumber(int number, int t = 5)
 
 void loop()
 {
-  analogReadResolution(10);
+  analogReadResolution(12);
   int value = analogRead(40);
-
+  value = map(value, 0, 4095, 0, 1000);
   displayNumber(value);
   Serial.println(value);
 }
