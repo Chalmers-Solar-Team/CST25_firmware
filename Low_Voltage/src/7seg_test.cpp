@@ -79,19 +79,42 @@ void displayNumber(int number, int t = 5)
   int digit3 = (number % 100) / 10;
   int digit4 = number % 10;
 
-  digitalWrite(digitPins[0], LOW);
-  digitalWrite(digitPins[1], HIGH);
-  digitalWrite(digitPins[2], HIGH);
-  digitalWrite(digitPins[3], HIGH);
-  displayDigit(digit1);
-  delay(t);
-
-  digitalWrite(digitPins[0], HIGH);
-  digitalWrite(digitPins[1], LOW);
-  digitalWrite(digitPins[2], HIGH);
-  digitalWrite(digitPins[3], HIGH);
-  displayDigit(digit2);
-  delay(t);
+  if (digit1 == 0)
+  {
+    digitalWrite(digitPins[0], HIGH);
+    digitalWrite(digitPins[1], HIGH);
+    digitalWrite(digitPins[2], HIGH);
+    digitalWrite(digitPins[3], HIGH);
+    displayDigit(digit1);
+    delay(t);
+  }
+  else
+  {
+    digitalWrite(digitPins[0], LOW);
+    digitalWrite(digitPins[1], HIGH);
+    digitalWrite(digitPins[2], HIGH);
+    digitalWrite(digitPins[3], HIGH);
+    displayDigit(digit1);
+    delay(t);
+  }
+  if (digit2 == 0 && digit1 == 0)
+  {
+    digitalWrite(digitPins[0], HIGH);
+    digitalWrite(digitPins[1], HIGH);
+    digitalWrite(digitPins[2], HIGH);
+    digitalWrite(digitPins[3], HIGH);
+    displayDigit(digit2);
+    delay(t);
+  }
+  else
+  {
+    digitalWrite(digitPins[0], HIGH);
+    digitalWrite(digitPins[1], LOW);
+    digitalWrite(digitPins[2], HIGH);
+    digitalWrite(digitPins[3], HIGH);
+    displayDigit(digit2);
+    delay(t);
+  }
 
   digitalWrite(digitPins[0], HIGH);
   digitalWrite(digitPins[1], HIGH);
